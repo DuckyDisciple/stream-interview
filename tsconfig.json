@@ -1,0 +1,105 @@
+{
+  "compilerOptions": {
+    /* Basic Options */
+    "target": "esnext",
+    "module": "esnext",
+    "lib": [
+      "DOM",
+      "DOM.Iterable",
+      "ESNext"
+    ],
+    "allowJs": false,
+    "checkJs": false,
+    "jsx": "react",
+    "sourceMap": true,
+    "importHelpers": true,
+    "allowSyntheticDefaultImports": true,
+    "skipLibCheck": true,
+    /* Strict Type-Checking Options */
+    "strict": true,
+    "noImplicitAny": false,
+    "strictNullChecks": true,
+    "noEmitOnError": false,
+    "noEmit": true,
+    /* Additional Checks */
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": false,
+    "noFallthroughCasesInSwitch": false,
+    /* Module Resolution Options */
+    "baseUrl": "./",
+    "paths": {
+      "animation": [
+        "./src/animation"
+      ],
+      "animation*": [
+        "./src/animation*"
+      ],
+      "components": [
+        "./src/components"
+      ],
+      "components*": [
+        "./src/components*"
+      ],
+      "context": [
+        "./src/context"
+      ],
+      "figures": [
+        "./src/figures"
+      ],
+      "figures*": [
+        "./src/figures*"
+      ],
+      "global": [
+        "./src/global"
+      ],
+      "global*": [
+        "./src/global*"
+      ],
+      "styles": [
+        "./src/styles"
+      ],
+      "styles*": [
+        "./src/styles*"
+      ],
+      "hooks": [
+        "./src/hooks"
+      ],
+      "hooks*": [
+        "./src/hooks*"
+      ],
+      "images": [
+        "./src/images"
+      ],
+      "images*": [
+        "./src/images*"
+      ],
+      "utilities": [
+        "./src/utilities"
+      ],
+      "utilities*": [
+        "./src/utilities*"
+      ]
+    },
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "types": [
+      "vite/client"
+    ],
+    "esModuleInterop": true,
+    "preserveSymlinks": true
+  },
+  "include": [
+    "./src"
+  ],
+  "exclude": [
+    "src/**/*.test.*",
+    "src/**/__tests__/*",
+    "node_modules",
+    "packages",
+    ".github",
+    "coverage",
+    "cypress",
+    ".vscode"
+  ]
+}
