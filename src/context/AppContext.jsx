@@ -3,8 +3,8 @@ import theme from "../styles/Themes"
 
 const initialState = {
   currentTheme: theme.light,
-  hasNewNotification: true,
-  hasNewMessage: true,
+  hasNewNotification: false,
+  hasNewMessage: false,
   notifications: [],
   messages: [],
 }
@@ -29,12 +29,12 @@ const reducer = (state, action) => {
         ...state,
         hasNewNotification: action.hasNew,
       }
-    case "SET_NEW_MESSSAGES":
+    case "SET_NEW_MESSAGES":
       return {
         ...state,
         hasNewMessage: action.hasNew,
       }
-    case "SET_MESSSAGES":
+    case "SET_MESSAGES":
       return {
         ...state,
         messages: action.messages,

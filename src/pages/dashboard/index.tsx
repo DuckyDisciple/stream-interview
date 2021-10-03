@@ -6,10 +6,9 @@ import Widgets from './Widgets'
 
 export default function Dashboard() {
   const title = 'Stream Interview - Dashboard'
-  const description = `Here's the dashboard view for the Stream Interview example`
   return (
     <>
-      <SEO title={title} description={description} pathname="/" />
+      <SEO title={title} />
       <Section>
         <>
           <h3>Analytics Overview</h3>

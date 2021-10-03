@@ -1,8 +1,7 @@
 import React from 'react'
 import { AppProvider, AppContext } from "context"
 import { ThemeProvider } from "styled-components"
-import {BrowserRouter,Switch,Route} from 'react-router-dom'
-import { HelmetProvider } from 'react-helmet-async'
+import {BrowserRouter} from 'react-router-dom'
 import styled from 'styled-components'
 
 import {Header} from "./Header"

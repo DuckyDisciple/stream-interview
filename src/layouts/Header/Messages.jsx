@@ -1,12 +1,32 @@
-import React, {useContext} from 'react'
+import React, {useContext, useEffect} from 'react'
 import { AppContext } from 'context'
 import styled, {css} from 'styled-components'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEnvelope } from '@fortawesome/free-regular-svg-icons'
 import { Dropdown } from 'components'
+import tommaso from "images/tommaso.png"
+
+const fakeMessage = [
+  {
+    image: tommaso,
+    from: "Tommaso",
+    text: "Please hire Drew ASAP. Thank you."
+  }
+]
 
 export const Messages = () => {
-  const {appState} = useContext(AppContext)
+  const {appState, appDispatch} = useContext(AppContext)
+
+  useEffect(() => {
+    setTimeout(() => appDispatch({
+      type: "SET_MESSAGES",
+      messages: fakeMessage
+    }), 5000)
+    setTimeout(() => appDispatch({
+      type: "SET_NEW_MESSAGES", 
+      hasNew: true,
+    }), 5000)
+  }, [])
 
   return (
     <Dropdown
@@ -16,29 +36,59 @@ export const Messages = () => {
         </MessageIcon>}
       renderMenuItems={() => (
         <>
-          <MessageCard>
-            <div className="from">From: Tommaso</div>
-            <div className="message">Please hire Drew ASAP. Thank you.</div>
+        {appState.messages.length ? appState.messages.map(({image, from, text}) => (
+          <MessageCard onClick={() => appDispatch({type: "SET_NEW_MESSAGES", hasNew: false})}>
+            <img src={image} alt={from} />
+            <div className="from">From: {from}</div>
+            <div className="message">{text}</div>
           </MessageCard>
+        )) : 
+          <NoMessages>No messages right now</NoMessages>
+        }
         </>
       )}
     />
   )
 }
 
+const NoMessages = styled.div`
+  padding: 5px;
+  font-size: 12px;
+  color: ${({theme}) => theme.text};
+  min-width: 200px; 
+`
+
 const MessageCard = styled.div`
   margin: 2px;
-  padding: 2px 5px;
+  padding: 5px 5px;
   background: ${props => props.theme.background};
   border: solid 1px ${props => props.theme.outline};
   font-size: 12px;
   text-align: left;
+  display: grid;
+  grid-template-columns: 24px 1fr;
+  grid-template-rows: 24px auto;
+  column-gap: 8px;
+  row-gap: 3px;
+  align-items: center;
+  min-width: 200px;
+  cursor: pointer;
+  z-index: 100;
+
+  img {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+  }
 
   .from {
     font-weight: bold;
+    color: ${({theme}) => theme.text};
   }
   .message {
+    color: ${({theme}) => theme.text};
     font-style: italic;
+    grid-column: 1 / -1;
   }
 `
 

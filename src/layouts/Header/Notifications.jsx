@@ -1,12 +1,30 @@
-import React, {useContext} from 'react'
+import React, {useContext, useEffect} from 'react'
 import { AppContext } from 'context'
 import styled, {css} from 'styled-components'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBell } from '@fortawesome/free-regular-svg-icons'
 import { Dropdown } from 'components'
+import { faExclamation } from '@fortawesome/free-solid-svg-icons'
+
+const fakeNotification = [
+  {
+    text: "Don't forget to hire Drew today!"
+  }
+]
 
 export const Notifications = () => {
-  const {appState} = useContext(AppContext)
+  const {appState, appDispatch} = useContext(AppContext)
+
+  useEffect(() => {
+    setTimeout(() => appDispatch({
+      type: "SET_NOTIFICATIONS",
+      notifications: fakeNotification
+    }), 10000)
+    setTimeout(() => appDispatch({
+      type: "SET_NEW_NOTIFICATIONS", 
+      hasNew: true,
+    }), 10000)
+  }, [])
 
   return (
     <Dropdown
@@ -16,22 +34,42 @@ export const Notifications = () => {
         </NotificationIcon>}
       renderMenuItems={() => (
         <>
-          <NotificationCard>
-            Don't forget to hire Drew today!
-          </NotificationCard>
+          {appState.notifications.length ? appState.notifications.map((noti) => (
+            <NotificationCard onClick={() => appDispatch({type: "SET_NEW_NOTIFICATIONS", hasNew: false})}>
+              <FontAwesomeIcon icon={faExclamation} /> {noti.text}
+            </NotificationCard>
+          )) :
+            <NoNotifications>No notifications right now</NoNotifications>
+          }
         </>
       )}
     />
   )
 }
 
+const NoNotifications = styled.div`
+  padding: 5px;
+  font-size: 12px;
+  color: ${({theme}) => theme.text};
+  min-width: 200px; 
+`
+
 const NotificationCard = styled.div`
   margin: 2px;
-  padding: 2px 5px;
+  padding: 5px;
   background: ${props => props.theme.background};
   border: solid 1px ${props => props.theme.outline};
   font-size: 12px;
   text-align: left;
+  color: ${({theme}) => theme.text};
+  min-width: 200px;
+  cursor: pointer;
+  z-index: 100;
+  
+  svg {
+    color: ${({theme}) => theme.text};
+    margin: 0 8px 0 3px;
+  }
 `
 
 const NotificationIcon = styled.div`

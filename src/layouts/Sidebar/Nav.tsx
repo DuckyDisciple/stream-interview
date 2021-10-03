@@ -56,7 +56,11 @@ const NavWrapper = styled.nav`
 
     &.active button {
       background-color: ${({theme}) => theme.background};
-      box-shadow: 0 3px 5px -2px ${({theme}) => theme.shadow};
+      box-shadow: 0 3px 12px -10px ${({theme}) => theme.shadow};
+
+      &:hover {
+        background-color: ${({theme}) => theme.name === "light" ? theme.lightBlue : theme.darkenedPrimary};
+      }
     }
   }
 `

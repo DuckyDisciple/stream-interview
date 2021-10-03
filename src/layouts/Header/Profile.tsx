@@ -11,7 +11,10 @@ export const Profile = () => {
       menuIcon={<Avatar photoSrc={userProfile} size={40} />}
       renderMenuItems={() => (
         <>
-            <div className="user-info">User Info Here</div>
+            <div className="user-info">Fake Link</div>
+            <div className="user-info">Another Fake Link</div>
+            <div className="user-info">Just A Placeholder</div>
+            <div className="logout">Logout</div>
           </>
         )}
         />
@@ -24,6 +27,33 @@ const ProfileWrapper = styled.div`
   border-left: solid 1px ${props => props.theme.outline};
   display: flex;
   align-items: center;
+  color: ${({theme}) => theme.text};
+  z-index: 100;
+
+  .user-info {
+    font-size: 12px;
+    cursor: pointer;
+    padding: 3px;
+    transition: 0.3s ease-out;
+    
+    &:hover {
+      background: ${({theme}) => theme.pageBackground};;
+      color: ${({theme}) => theme.name === "light" ? theme.primary : theme.lightBlue};
+    }
+  }
+  
+  .logout {
+    padding: 3px;
+    font-size: 10px;
+    margin-top: 8px;
+    cursor: pointer;
+    transition: 0.3s ease-out;
+    
+    &:hover {
+      background: ${({theme}) => theme.pageBackground};;
+      color: ${({theme}) => theme.name === "light" ? theme.primary : theme.lightBlue};
+    }
+  }
 
   &::after {
     content: '';

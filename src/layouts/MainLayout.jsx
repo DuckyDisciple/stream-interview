@@ -3,6 +3,7 @@ import { AppContext } from 'context'
 import { Route, Switch } from 'react-router-dom'
 import styled, { css } from 'styled-components'
 import Dashboard from '../pages/dashboard'
+import Profiles from '../pages/profiles'
 
 // import Dashboard from "pages/Dashboard"
 
@@ -14,6 +15,7 @@ export function MainLayout() {
       <MainWrapper>
         <Switch>
           <Route exact path="/" component={Dashboard} />
+          <Route exact path="/profiles" component={Profiles} />
         </Switch>
       </MainWrapper>
     </>

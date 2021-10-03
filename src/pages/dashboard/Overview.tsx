@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import overviewImage from 'images/nmh-overview-image.png'
 import OverviewDataItem from './OverviewDataItem'
 import { faCity, faUser } from '@fortawesome/free-solid-svg-icons'
-import numberFormater from 'utilities/NumberFormat'
+import formatNumber from 'utilities/formatNumber'
 
 const fakeData = {
   name: "Northwestern Memorial Hospital",
@@ -28,8 +28,8 @@ export default function Overview() {
             <h2>{info.name}</h2>
             <address>{info.address}</address>
             <div className="info-items">
-              <OverviewDataItem label="Total doctors" icon={faUser} dataVal={numberFormater(info.doctorCount)}/>
-              <OverviewDataItem label="Number of cities" icon={faCity} dataVal={numberFormater(info.cityCount)}/>
+              <OverviewDataItem label="Total doctors" icon={faUser} dataVal={formatNumber(info.doctorCount)}/>
+              <OverviewDataItem label="Number of cities" icon={faCity} dataVal={formatNumber(info.cityCount)}/>
             </div>
           </>
         }

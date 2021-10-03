@@ -49,6 +49,7 @@ const MenuDropdownWrapper = styled.div`
   perspective: 400px;
   display: flex;
   justify-content: flex-end;
+  z-index: 100;
 `
 
 const MenuDropdownContainer = styled(motion.div)`

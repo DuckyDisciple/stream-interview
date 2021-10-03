@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import styled from 'styled-components'
 import { faHeartBroken, faProcedures, faStethoscope, faVirus, faViruses, faVirusSlash } from '@fortawesome/free-solid-svg-icons'
-import numberFormater from 'utilities/NumberFormat'
+import formatNumber from 'utilities/formatNumber'
 import WidgetItem from './WidgetItem'
 import barGraph from "images/bar-graph.png"
 import lineGraph from "images/line-graph.png"
@@ -25,12 +25,12 @@ export default function Widgets() {
 
   return (
     <WidgetWrapper>
-      <WidgetItem label="Corona Cases" icon={faVirus} dataVal={info?.coronaCases} dataText={numberFormater(info?.coronaCases)} isHighGood={false} />
-      <WidgetItem label="Recovered" icon={faVirusSlash} dataVal={info?.recovered} dataText={numberFormater(info?.recovered)} min={10000} max={90000} isHighGood={true} />
-      <WidgetItem label="Active Cases" icon={faViruses} dataVal={info?.activeCases} dataText={numberFormater(info?.activeCases)} isHighGood={false} chart={barGraph} />
-      <WidgetItem label="Deaths" icon={faHeartBroken} dataVal={info?.deaths} dataText={numberFormater(info?.deaths)} max={10000} isHighGood={false} />
-      <WidgetItem label="Testing Done" icon={faStethoscope} dataVal={info?.testingDone} dataText={numberFormater(info?.testingDone)} isHighGood={true} />
-      <WidgetItem label="Beds Available" icon={faProcedures} dataVal={info?.bedsAvailable} dataText={numberFormater(info?.bedsAvailable)} isHighGood={true} chart={lineGraph} />
+      <WidgetItem label="Corona Cases" icon={faVirus} dataVal={info?.coronaCases} dataText={formatNumber(info?.coronaCases)} isHighGood={false} />
+      <WidgetItem label="Recovered" icon={faVirusSlash} dataVal={info?.recovered} dataText={formatNumber(info?.recovered)} min={10000} max={90000} isHighGood={true} />
+      <WidgetItem label="Active Cases" icon={faViruses} dataVal={info?.activeCases} dataText={formatNumber(info?.activeCases)} isHighGood={false} chart={barGraph} />
+      <WidgetItem label="Deaths" icon={faHeartBroken} dataVal={info?.deaths} dataText={formatNumber(info?.deaths)} max={10000} isHighGood={false} />
+      <WidgetItem label="Testing Done" icon={faStethoscope} dataVal={info?.testingDone} dataText={formatNumber(info?.testingDone)} isHighGood={true} />
+      <WidgetItem label="Beds Available" icon={faProcedures} dataVal={info?.bedsAvailable} dataText={formatNumber(info?.bedsAvailable)} isHighGood={true} chart={lineGraph} />
     </WidgetWrapper>
   )
 }
