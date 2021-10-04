@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEnvelope } from '@fortawesome/free-regular-svg-icons'
 import { Dropdown } from 'components'
 import tommaso from "images/tommaso.png"
-import { Types } from 'src/context/AppContext'
+import { Types } from 'context'
 
 const fakeMessage: [Message?] = [
   {

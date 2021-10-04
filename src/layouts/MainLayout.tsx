@@ -1,22 +1,27 @@
 import React from 'react'
-import { Route, Switch } from 'react-router-dom'
+import { Route, Switch, useLocation } from 'react-router-dom'
 import styled from 'styled-components'
 import { Dashboard } from 'pages/dashboard'
 import { Profiles } from 'pages/profiles'
 import { ComingSoon } from "pages/ComingSoon"
+import { AnimatePresence } from 'framer-motion'
 
 export function MainLayout() {
+  const location = useLocation()
+
   return (
     <>
       <MainWrapper>
-        <Switch>
-          <Route exact path="/" component={Dashboard} />
-          <Route exact path="/profiles" component={Profiles} />
-          <Route exact path="/organization" component={ComingSoon} />
-          <Route exact path="/department" component={ComingSoon} />
-          <Route exact path="/settings" component={ComingSoon} />
-          <Route component={ComingSoon} />
-        </Switch>
+        <AnimatePresence exitBeforeEnter>
+          <Switch location={location} key={location.pathname}>
+            <Route exact path="/" component={Dashboard} />
+            <Route exact path="/profiles" component={Profiles} />
+            <Route exact path="/organization" component={ComingSoon} />
+            <Route exact path="/department" component={ComingSoon} />
+            <Route exact path="/settings" component={ComingSoon} />
+            <Route component={ComingSoon} />
+          </Switch>
+        </AnimatePresence>
       </MainWrapper>
     </>
   )
