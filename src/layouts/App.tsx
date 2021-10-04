@@ -3,19 +3,20 @@ import { AppProvider, AppContext } from "context"
 import { ThemeProvider } from "styled-components"
 import {BrowserRouter} from 'react-router-dom'
 import styled from 'styled-components'
+import "styles/index"
 
-import {Header} from "./Header"
-import {Sidebar} from "./Sidebar"
-import {MainLayout} from "./MainLayout"
+import {Header} from "layouts/Header"
+import {Sidebar} from "layouts/Sidebar"
+import {MainLayout} from "layouts/MainLayout"
 
 
-function App() {
+export function App() {
   return (
     <>
       <AppProvider>
         <AppContext.Consumer>
-          {({appState}) => (
-            <ThemeProvider theme={appState.currentTheme}>
+          {({state}) => (
+            <ThemeProvider theme={state.currentTheme}>
               <BrowserRouter>
                 <PageLayout>
                   <AppLayout>
@@ -33,8 +34,9 @@ function App() {
   );
 }
 
-export default App;
-
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// Styles
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 const PageLayout = styled.div`
   width: 100vw;
   height: 100vh;
@@ -60,6 +62,7 @@ const AppLayout = styled.div`
   grid-template-columns: 250px 1fr;
   grid-template-rows: auto 1fr;
   overflow: hidden;
+  max-height: 95vh;
 
   header {
     grid-column: 2;

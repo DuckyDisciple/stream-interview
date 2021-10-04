@@ -1,9 +1,9 @@
 import React from 'react'
 import { Section } from 'components'
 import { SEO } from 'utilities'
-import ChatContainer from './ChatContainer'
+import { ChatContainer } from 'pages/profiles'
 
-export default function Profiles() {
+export function Profiles() {
   const title = 'Stream Interview - Doctor Profiles'
   return (
     <>

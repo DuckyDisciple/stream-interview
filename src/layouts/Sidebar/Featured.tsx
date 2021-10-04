@@ -10,6 +10,9 @@ export function Featured() {
   )
 }
 
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// Styles
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 const FeaturedWrapper = styled.div`
   margin-top: auto;
   background: #fff;

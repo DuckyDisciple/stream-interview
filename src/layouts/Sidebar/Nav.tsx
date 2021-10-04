@@ -42,6 +42,9 @@ export function Nav() {
   )
 }
 
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// Styles
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 const NavWrapper = styled.nav`
   display: flex;
   flex-direction: column;

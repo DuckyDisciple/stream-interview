@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 
 /* function used to close/toggle local state when clicking off of element with ref */
-const useClickOutside = (ref: any, handler: any) => {
+export function useClickOutside (ref: any, handler: any) {
   useEffect(() => {
     const listener = (event: any) => {
       if (!ref.current || ref.current.contains(event.target)) {
@@ -17,5 +17,3 @@ const useClickOutside = (ref: any, handler: any) => {
     }
   }, [handler, ref])
 }
-
-export default useClickOutside

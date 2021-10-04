@@ -18,6 +18,9 @@ export function Search() {
   )
 }
 
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// Styles
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 const HeaderSearchGroup = styled.div`
   margin-right: auto;
   position: relative;
@@ -25,13 +28,13 @@ const HeaderSearchGroup = styled.div`
   label {
     position: absolute;
     top: 12px;
-    left: 12px;
+    left: 24px;
     font-size: 14px;
     font-family: sans-serif;
     transition: 0.3s ease-out;
     pointer-events: none;
     line-height: 1;
-    color: ${props => props.theme.outline};
+    color: ${({theme}) => theme.gray};
   }
 
   svg {
@@ -56,7 +59,7 @@ const HeaderSearchGroup = styled.div`
     border-radius: 25px;
     padding: 10px 25px;
     font-size: 16px;
-    width: 200px;
+    width: 300px;
     border-color: ${props => props.theme.outline};
     color: ${props => props.theme.text};
     background: ${props => props.theme.background};
@@ -80,4 +83,3 @@ const HeaderSearchGroup = styled.div`
     }
   }
 `
-

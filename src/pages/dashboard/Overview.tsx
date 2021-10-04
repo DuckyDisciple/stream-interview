@@ -1,9 +1,9 @@
 import React, {useState, useEffect} from 'react'
 import styled from 'styled-components'
 import overviewImage from 'images/nmh-overview-image.png'
-import OverviewDataItem from './OverviewDataItem'
+import {OverviewDataItem} from 'pages/dashboard'
 import { faCity, faUser } from '@fortawesome/free-solid-svg-icons'
-import formatNumber from 'utilities/formatNumber'
+import {formatNumber} from 'utilities/formatNumber'
 
 const fakeData = {
   name: "Northwestern Memorial Hospital",
@@ -12,8 +12,8 @@ const fakeData = {
   cityCount: 21
 }
 
-export default function Overview() {
-  const [info, setInfo] = useState<IInfo>()
+export function Overview() {
+  const [info, setInfo] = useState<OverviewType>()
 
   useEffect(() => {
     // Would normally pass in data from query
@@ -44,7 +44,7 @@ export default function Overview() {
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Types
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-interface IInfo {
+type OverviewType = {
   name: string
   address: string
   doctorCount: number
@@ -59,6 +59,7 @@ const OverviewWrapper = styled.div`
   border-radius: 15px;
   background: ${({theme}) => theme.lightBlue};
   overflow: hidden;
+  margin-top: 16px;
   margin-bottom: 50px;
 
   .data {

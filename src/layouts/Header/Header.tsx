@@ -1,14 +1,8 @@
-import React, { useEffect, useState, useContext } from 'react'
-import { AppContext } from '../../context/AppContext'
-import styled, { css } from 'styled-components'
-import { Messages } from './Messages'
-import { Notifications } from './Notifications'
-import { Profile } from './Profile'
-import { Search } from './Search'
+import React from 'react'
+import styled from 'styled-components'
+import { Messages, Notifications, Profile, Search } from 'layouts/Header'
 
 export function Header() {
-  const { state, dispatch } = useContext(AppContext)
-
   return (
     <>
       <HeaderWrapper className="header">
@@ -21,6 +15,9 @@ export function Header() {
   )
 }
 
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// Styles
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 const HeaderWrapper = styled.header`
   display: flex;
   width: 100%;

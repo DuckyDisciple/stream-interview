@@ -1,10 +1,6 @@
 import React, { ReactChild } from 'react'
 import styled from 'styled-components'
 
-type Props = {
-  children: ReactChild
-}
-
 export function Section({ children }: Props) {
   return (
     <SectionWrapper>
@@ -13,6 +9,16 @@ export function Section({ children }: Props) {
   )
 }
 
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// Types
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+type Props = {
+  children: ReactChild
+}
+
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// Styles
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 const SectionWrapper = styled.div`
   position: relative;
   padding: 25px 0 25px;

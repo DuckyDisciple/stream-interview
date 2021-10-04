@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from 'react'
 import styled from 'styled-components'
 import { faHeartBroken, faProcedures, faStethoscope, faVirus, faViruses, faVirusSlash } from '@fortawesome/free-solid-svg-icons'
-import formatNumber from 'utilities/formatNumber'
-import WidgetItem from './WidgetItem'
+import {formatNumber} from 'utilities/formatNumber'
+import {WidgetItem} from 'pages/dashboard'
 import barGraph from "images/bar-graph.png"
 import lineGraph from "images/line-graph.png"
 
@@ -15,7 +15,7 @@ const fakeData = {
   bedsAvailable: 2800
 }
 
-export default function Widgets() {
+export function Widgets() {
   const [info, setInfo] = useState<IInfo>()
 
   useEffect(() => {
@@ -24,14 +24,18 @@ export default function Widgets() {
   },[])
 
   return (
-    <WidgetWrapper>
-      <WidgetItem label="Corona Cases" icon={faVirus} dataVal={info?.coronaCases} dataText={formatNumber(info?.coronaCases)} isHighGood={false} />
-      <WidgetItem label="Recovered" icon={faVirusSlash} dataVal={info?.recovered} dataText={formatNumber(info?.recovered)} min={10000} max={90000} isHighGood={true} />
-      <WidgetItem label="Active Cases" icon={faViruses} dataVal={info?.activeCases} dataText={formatNumber(info?.activeCases)} isHighGood={false} chart={barGraph} />
-      <WidgetItem label="Deaths" icon={faHeartBroken} dataVal={info?.deaths} dataText={formatNumber(info?.deaths)} max={10000} isHighGood={false} />
-      <WidgetItem label="Testing Done" icon={faStethoscope} dataVal={info?.testingDone} dataText={formatNumber(info?.testingDone)} isHighGood={true} />
-      <WidgetItem label="Beds Available" icon={faProcedures} dataVal={info?.bedsAvailable} dataText={formatNumber(info?.bedsAvailable)} isHighGood={true} chart={lineGraph} />
-    </WidgetWrapper>
+    <>
+    { info && 
+      <WidgetWrapper>
+        <WidgetItem label="Corona Cases" icon={faVirus} dataVal={info.coronaCases} dataText={formatNumber(info?.coronaCases)} isHighGood={false} />
+        <WidgetItem label="Recovered" icon={faVirusSlash} dataVal={info.recovered} dataText={formatNumber(info?.recovered)} min={10000} max={90000} isHighGood={true} />
+        <WidgetItem label="Active Cases" icon={faViruses} dataVal={info.activeCases} dataText={formatNumber(info?.activeCases)} isHighGood={false} chart={barGraph} />
+        <WidgetItem label="Deaths" icon={faHeartBroken} dataVal={info.deaths} dataText={formatNumber(info?.deaths)} max={10000} isHighGood={false} />
+        <WidgetItem label="Testing Done" icon={faStethoscope} dataVal={info.testingDone} dataText={formatNumber(info?.testingDone)} isHighGood={true} />
+        <WidgetItem label="Beds Available" icon={faProcedures} dataVal={info.bedsAvailable} dataText={formatNumber(info?.bedsAvailable)} isHighGood={true} chart={lineGraph} />
+      </WidgetWrapper>
+      }
+    </>
   )
 }
 
@@ -56,6 +60,7 @@ const WidgetWrapper = styled.div`
   grid-template-rows: repeat(2, 1fr);
   gap: 16px;
   grid-auto-flow: column dense;
+  margin-top: 16px;
 
   .data {
     padding: 10px 10px 10px 35px;

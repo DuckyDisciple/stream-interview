@@ -16,7 +16,6 @@ export const baseButtonStyle = css`
   cursor: pointer;
   
   &:hover {
-    /* color: ${({theme}) => theme.primary}; */
     background-color: ${({theme}) => theme.name === "light" ? theme.lightBlue : theme.darkenedPrimary};
   }
 

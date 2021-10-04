@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { IconProp } from '@fortawesome/fontawesome-svg-core'
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
 
-const calculateColors = (data, min, max, isHighGood) => {
+const calculateColors = (data: number, min?: number, max?: number, isHighGood?: boolean) => {
   if(max && data > max) {
     return isHighGood ? 'good' : 'bad'
   }
@@ -14,7 +14,7 @@ const calculateColors = (data, min, max, isHighGood) => {
   return 'average'
 }
 
-export default function WidgetItem({label, icon, dataVal, dataText, min, max, isHighGood, chart}:Props) {
+export function WidgetItem({label, icon, dataVal, dataText, min, max, isHighGood, chart}:Props) {
   
   return (
     <ItemWrapper color={calculateColors(dataVal, min, max, isHighGood)} hasChart={chart !== undefined}>
@@ -41,7 +41,7 @@ export default function WidgetItem({label, icon, dataVal, dataText, min, max, is
 type Props = {
   label: string
   icon: IconProp
-  dataVal: number | undefined
+  dataVal: number
   dataText: string
   min?: number
   max?: number

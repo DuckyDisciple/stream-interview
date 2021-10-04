@@ -7,7 +7,7 @@ import gregory from "images/gregory.png"
 import {StreamChat} from 'stream-chat'
 import { Chat, Channel, ChannelList, ChannelHeader, MessageInput, MessageList, Thread, Window, LoadingIndicator } from 'stream-chat-react'
 import 'stream-chat-react/dist/css/index.css';
-import Doctor from './Doctor'
+import {Doctor} from 'pages/profiles'
 
 const fakeData = [
   {
@@ -36,20 +36,9 @@ const fakeData = [
 const userToken = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoic3VtbWVyLXRvb3RoLTgifQ.hAx6wM3efDj2ZuQ7b2SUE8sOYxTMOytBn7O41f1WhKI'
 const filters = {type: 'messaging', members: {$in: ['summer-tooth-8']}}
 
-const CustomChannelPreview = ({channel, setActiveChannel}) => {
-  const title = channel.title;
-
-  return (
-    <div onClick={() => setActiveChannel(channel)} style={{margin: '12px'}}>
-      <div>{channel.data.name || 'Unnamed Channel'}</div>
-      <div>{title}</div>
-    </div>
-  )
-}
-
-export default function ChatContainer() {
+export function ChatContainer() {
   const [chatClient, setChatClient] = useState<StreamChat>()
-  const {appState} = useContext(AppContext)
+  const {state} = useContext(AppContext)
 
   useEffect(() => {
     const initChat = async () => {
@@ -76,7 +65,7 @@ export default function ChatContainer() {
 
       setChatClient(client);
     }
-    console.log("theme", appState.currentTheme.name)
+    console.log("theme", state.currentTheme.name)
     initChat()
   },[])
 
@@ -86,7 +75,7 @@ export default function ChatContainer() {
 
   return (
     <ChatWrapper>
-      <Chat client={chatClient} theme={"messaging " + appState.currentTheme.name}>
+      <Chat client={chatClient} theme={"messaging " + state.currentTheme.name}>
         <ChannelList filters={filters} Preview={Doctor} />
         <Channel>
           <Window>
@@ -102,29 +91,25 @@ export default function ChatContainer() {
 }
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-// Types
-// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-interface IDoctor {
-  name: string
-  title: string
-  image: string
-}
-
-// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Styles
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 const ChatWrapper = styled.div`
+  margin-top: 16px;
   border-radius: 15px;
   overflow: hidden;
   padding-bottom: 20px;
   padding-right: 10px;
-  background: ${({theme}) => theme.name === "light" ? 'var(--grey-gainsboro)' : 'var(--dark-gray)'};
+  background: ${({theme}) => theme.name === "light" ? 'var(--grey-gainsboro)' : 'var(--dark-grey)'};
   
   .str-chat__channel-list-messenger {
-    background: ${({theme}) => theme.name === "light" ? 'var(--grey-gainsboro)' : 'var(--dark-gray)'};
+    background: ${({theme}) => theme.name === "light" ? 'var(--grey-gainsboro)' : 'var(--dark-grey)'};
   }
 
   .str-chat__input-flat {
     border-radius: 0 0 var(--border-radius-md) var(--border-radius-md);
+  }
+
+  .str-chat__avatar-image {
+    border-radius: 50%;
   }
 `

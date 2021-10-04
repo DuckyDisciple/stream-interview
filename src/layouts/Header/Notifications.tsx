@@ -1,42 +1,46 @@
 import React, {useContext, useEffect} from 'react'
-import { AppContext } from 'context'
+import { AppContext, Notification, Types } from 'context'
 import styled, {css} from 'styled-components'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBell } from '@fortawesome/free-regular-svg-icons'
 import { Dropdown } from 'components'
 import { faExclamation } from '@fortawesome/free-solid-svg-icons'
 
-const fakeNotification = [
+const fakeNotification: [Notification?] = [
   {
     text: "Don't forget to hire Drew today!"
   }
 ]
 
 export const Notifications = () => {
-  const {appState, appDispatch} = useContext(AppContext)
+  const {state, dispatch} = useContext(AppContext)
 
   useEffect(() => {
-    setTimeout(() => appDispatch({
-      type: "SET_NOTIFICATIONS",
-      notifications: fakeNotification
+    setTimeout(() => dispatch({
+      type: Types.SetNotifications,
+      payload: {
+        notifications: fakeNotification
+      }
     }), 10000)
-    setTimeout(() => appDispatch({
-      type: "SET_NEW_NOTIFICATIONS", 
-      hasNew: true,
+    setTimeout(() => dispatch({
+      type: Types.SetNewNotifications,
+      payload: {
+        hasNew: true,
+      }
     }), 10000)
   }, [])
 
   return (
     <Dropdown
       menuIcon={
-        <NotificationIcon hasNew={appState.hasNewNotification}>
+        <NotificationIcon hasNew={state.hasNewNotification}>
           <FontAwesomeIcon icon={faBell} />
         </NotificationIcon>}
       renderMenuItems={() => (
         <>
-          {appState.notifications.length ? appState.notifications.map((noti) => (
-            <NotificationCard onClick={() => appDispatch({type: "SET_NEW_NOTIFICATIONS", hasNew: false})}>
-              <FontAwesomeIcon icon={faExclamation} /> {noti.text}
+          {state.notifications.length ? state.notifications.map((noti) => (
+            <NotificationCard onClick={() => dispatch({type: Types.SetNewNotifications, payload:{hasNew: false}})}>
+              <FontAwesomeIcon icon={faExclamation} /> {noti?.text}
             </NotificationCard>
           )) :
             <NoNotifications>No notifications right now</NoNotifications>
@@ -47,6 +51,9 @@ export const Notifications = () => {
   )
 }
 
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// Styles
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 const NoNotifications = styled.div`
   padding: 5px;
   font-size: 12px;
@@ -85,18 +92,10 @@ const NotificationIcon = styled.div`
       background: ${props => props.theme.primary};
       border: solid 2px ${props => props.theme.white};
       border-radius: 50%;
-      width: 5px;
-      height: 5px;
+      width: 9px;
+      height: 9px;
       top: 5px;
       right: 19px;
     `}
   }
 `
-
-// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-// Types
-// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-// type Props = {
-//   user: {}
-// }

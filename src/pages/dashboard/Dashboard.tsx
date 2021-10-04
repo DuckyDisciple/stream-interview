@@ -1,10 +1,9 @@
 import React from 'react'
 import { Section } from 'components'
 import { SEO } from 'utilities'
-import Overview from './Overview'
-import Widgets from './Widgets'
+import { Overview, Widgets } from 'pages/dashboard'
 
-export default function Dashboard() {
+export function Dashboard() {
   const title = 'Stream Interview - Dashboard'
   return (
     <>

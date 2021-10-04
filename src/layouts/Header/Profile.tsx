@@ -22,6 +22,9 @@ export const Profile = () => {
   )
 }
 
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// Styles
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 const ProfileWrapper = styled.div`
   padding-left: 20px;
   border-left: solid 1px ${props => props.theme.outline};
@@ -59,17 +62,10 @@ const ProfileWrapper = styled.div`
     content: '';
     height: 0;
     width: 0;
+    margin-left: 5px;
     border-left: solid 3px transparent;
     border-right: solid 3px transparent;
     border-top: solid 5px ${props => props.theme.text};
     display: block;
   }
 `
-
-// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-// Types
-// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-// type Props = {
-//   user: {}
-// }

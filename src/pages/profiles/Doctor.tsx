@@ -2,7 +2,7 @@ import React from 'react'
 import { ChannelPreviewProps } from 'stream-chat-react'
 import styled from 'styled-components'
 
-export default function Doctor({channel, setActiveChannel}:ChannelPreviewProps) {
+export function Doctor({channel, setActiveChannel}:ChannelPreviewProps) {
   const title= channel?.data?.title as string
   
   return (
@@ -14,15 +14,6 @@ export default function Doctor({channel, setActiveChannel}:ChannelPreviewProps) 
       <div className="title">{title}</div>
     </DoctorWrapper>
   )
-}
-
-// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-// Types
-// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-type Props = {
-  name: string
-  image: string
-  title: string
 }
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

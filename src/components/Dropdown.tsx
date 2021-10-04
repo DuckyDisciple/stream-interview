@@ -6,12 +6,6 @@ import { useClickOutside } from 'hooks'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHamburger} from '@fortawesome/free-solid-svg-icons'
 
-interface DropdownProps {
-  renderMenuItems(arg: () => void): ReactNode
-  style?: object
-  menuIcon?: ReactNode
-}
-
 export const Dropdown = ({ renderMenuItems, style = {}, menuIcon = '' }: DropdownProps) => {
   const [isMenuToggled, setIsMenuToggled] = useState(false)
   const toggle = () => setIsMenuToggled(!isMenuToggled)
@@ -44,6 +38,18 @@ export const Dropdown = ({ renderMenuItems, style = {}, menuIcon = '' }: Dropdow
   )
 }
 
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// Types
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+interface DropdownProps {
+  renderMenuItems(arg: () => void): ReactNode
+  style?: object
+  menuIcon?: ReactNode
+}
+
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// Styles
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 const MenuDropdownWrapper = styled.div`
   /* margin-left: var(--space); */
   perspective: 400px;

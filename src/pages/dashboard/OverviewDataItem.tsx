@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { IconProp } from '@fortawesome/fontawesome-svg-core'
 
-export default function OverviewDataItem({label, icon, dataVal}:Props) {
+export function OverviewDataItem({label, icon, dataVal}:Props) {
   return (
     <ItemWrapper>
       <div className="icon">

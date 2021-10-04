@@ -1,17 +1,20 @@
 import React, { useContext } from 'react'
-import { AppContext } from '../../context/AppContext'
+import { AppContext, Types } from 'context'
 import styled from 'styled-components'
 
 export function ThemeToggle() {
-  const { appDispatch } = useContext(AppContext)
+  const { dispatch } = useContext(AppContext)
 
   return (
     <>
-      <ThemeToggleButton onClick={() => appDispatch({type: "toggleTheme"})} />
+      <ThemeToggleButton onClick={() => dispatch({type: Types.ToggleTheme, payload:{}})} />
     </>
   )
 }
 
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// Styles
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 const ThemeToggleButton = styled.div`
   position: relative;
   width: 32px;

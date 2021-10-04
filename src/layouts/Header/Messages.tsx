@@ -1,12 +1,13 @@
 import React, {useContext, useEffect} from 'react'
-import { AppContext } from 'context'
+import { AppContext, Message } from 'context'
 import styled, {css} from 'styled-components'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEnvelope } from '@fortawesome/free-regular-svg-icons'
 import { Dropdown } from 'components'
 import tommaso from "images/tommaso.png"
+import { Types } from 'src/context/AppContext'
 
-const fakeMessage = [
+const fakeMessage: [Message?] = [
   {
     image: tommaso,
     from: "Tommaso",
@@ -15,42 +16,49 @@ const fakeMessage = [
 ]
 
 export const Messages = () => {
-  const {appState, appDispatch} = useContext(AppContext)
+  const {state, dispatch} = useContext(AppContext)
 
   useEffect(() => {
-    setTimeout(() => appDispatch({
-      type: "SET_MESSAGES",
-      messages: fakeMessage
+    setTimeout(() => dispatch({
+      type: Types.SetMessages,
+      payload: {
+        messages: fakeMessage
+      }
     }), 5000)
-    setTimeout(() => appDispatch({
-      type: "SET_NEW_MESSAGES", 
-      hasNew: true,
+    setTimeout(() => dispatch({
+      type: Types.SetNewMessages,
+      payload: {
+        hasNew: true,
+      }
     }), 5000)
   }, [])
 
   return (
     <Dropdown
       menuIcon={
-        <MessageIcon hasNew={appState.hasNewMessage}>
+        <MessageIcon hasNew={state.hasNewMessage}>
           <FontAwesomeIcon icon={faEnvelope} />
         </MessageIcon>}
       renderMenuItems={() => (
         <>
-        {appState.messages.length ? appState.messages.map(({image, from, text}) => (
-          <MessageCard onClick={() => appDispatch({type: "SET_NEW_MESSAGES", hasNew: false})}>
-            <img src={image} alt={from} />
-            <div className="from">From: {from}</div>
-            <div className="message">{text}</div>
-          </MessageCard>
-        )) : 
-          <NoMessages>No messages right now</NoMessages>
-        }
+          {state.messages.length ? state.messages?.map((msg) => (
+            <MessageCard onClick={() => dispatch({type: Types.SetNewMessages, payload: {hasNew: false}})}>
+              <img src={msg?.image} alt={msg?.from} />
+              <div className="from">From: {msg?.from}</div>
+              <div className="message">{msg?.text}</div>
+            </MessageCard>
+          )) : 
+            <NoMessages>No messages right now</NoMessages>
+          }
         </>
       )}
     />
   )
 }
 
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// Styles
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 const NoMessages = styled.div`
   padding: 5px;
   font-size: 12px;
@@ -105,18 +113,10 @@ const MessageIcon = styled.div`
       background: ${props => props.theme.lightRed};
       border: solid 2px ${props => props.theme.white};
       border-radius: 50%;
-      width: 5px;
-      height: 5px;
+      width: 9px;
+      height: 9px;
       top: 5px;
       right: 5px;
     `}
   }
 `
-
-// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-// Types
-// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-// type Props = {
-//   user: {}
-// }

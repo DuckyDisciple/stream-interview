@@ -74,6 +74,18 @@
       "images*": [
         "./src/images*"
       ],
+      "pages": [
+        "./src/pages"
+      ],
+      "pages*": [
+        "./src/pages*"
+      ],
+      "layouts": [
+        "./src/layouts"
+      ],
+      "layouts*": [
+        "./src/layouts*"
+      ],
       "utilities": [
         "./src/utilities"
       ],

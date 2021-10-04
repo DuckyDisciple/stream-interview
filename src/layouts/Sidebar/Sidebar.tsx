@@ -1,13 +1,8 @@
-import React, { useEffect, useState, useContext } from 'react'
-import { AppContext } from '../../context/AppContext'
-import styled, { css } from 'styled-components'
-import { ThemeToggle } from './ThemeToggle'
-import { Nav } from './Nav'
-import { Featured } from './Featured'
+import React from 'react'
+import styled from 'styled-components'
+import { ThemeToggle, Nav, Featured } from 'layouts/Sidebar'
 
 export function Sidebar() {
-  const { state, dispatch } = useContext(AppContext)
-
   return (
     <>
       <SidebarWrapper className="sidebar">
@@ -19,6 +14,9 @@ export function Sidebar() {
   )
 }
 
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// Styles
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 const SidebarWrapper = styled.aside`
   display: flex;
   flex-direction: column;
